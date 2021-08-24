@@ -1,5 +1,7 @@
 package com.slokam.studentRest.Controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,12 @@ public class StudentsDetailsController {
 	@Autowired
 	private StudentRepo repo;
 	
+	@GetMapping("/getalldetails")
+	public List<Student>getallstudents(){
+		return repo.findAll();
+		
+	}
+	
 	@PostMapping("/details")
 	public Student details(@RequestBody Student studentDetails) {
 		return repo.save(studentDetails);
@@ -39,7 +47,6 @@ public class StudentsDetailsController {
 	public void deletestudent(@PathVariable int id) {
 		repo.deleteById(id);
 
-		
 	}
 
 }
